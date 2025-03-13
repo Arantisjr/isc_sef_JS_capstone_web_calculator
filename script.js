@@ -20,8 +20,6 @@
     button_class = document.querySelectorAll(".btn");
    operators = document.querySelectorAll(".operator");
 
-
-
 //use query selector is u want to use the for each function
 button_class.forEach(function(button){
     button.addEventListener("click", function(){
@@ -31,10 +29,41 @@ button_class.forEach(function(button){
 
 operators.forEach(function(operator){
     operator.addEventListener("click", function(){
-        document.getElementById("display").value += operator.textContent;
+        if (operator.id == "backspace"){
+                let inp_val = document.getElementById("display").value;
+                document.getElementById("display").value = inp_val.slice(0,-1);    
+        }
+        else if(operator.id == "clear_button"){
+            document.getElementById("display").value = ""
+        }
+        else{
+            document.getElementById("display").value += operator.textContent; 
+        }
+       
 })
 });
+//eval function is used to evaluate the expression in the string
+equal_button.addEventListener("click", function(){
+    let user_input = document.getElementById("display").value;
+    document.getElementById("display").value = eval(user_input);
+});
+document.addEventListener("keydown", function(event){
+    let key = event.key;
+    if (!isNaN(key) || "+-*/%.".includes(key)){
+       document.getElementById("display").value += key;
 
-clear_button.addEventListener("click", function(){
-    document.getElementById("display").value = ""
-})
+    }else if(key == "Enter"){
+        let user_input = document.getElementById("display").value;
+    document.getElementById("display").value = eval(user_input);  
+    }else if(key == "Backspace"){
+        let inp_val = document.getElementById("display").value;
+        document.getElementById("display").value = inp_val.slice(0,-1);
+    }
+    else if(key=="Escape"){
+      document.getElementById("display").value = "";
+    
+    }
+
+    }
+)
+

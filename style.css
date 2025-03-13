@@ -54,6 +54,13 @@ button:hover {
     background-color: #e08e00;
 }
 
+.operator2{
+    background-color: #ff9500;
+}
+.operator2:hover {
+    background-color: #e08e00;
+}
+
 .equal {
     background-color: #0a84ff;
 }
